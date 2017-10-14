@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>
+    关于弹出层
+  </title>
+  <!-- <script type="text/javascript" src="__STATIC__/js/jquery-2.2.4.js"></script> -->
+  <script type="text/javascript" src="__STATIC__/layui/layui.js"></script>
+  <link rel="stylesheet" type="text/css" href="__STATIC__/layui/css/layui.css" />
+  
+</head>
+<body>
+<style type="text/css">
+  body .demo-class .layui-layer-title{background:#c00; color:#fff; border: none;}
+
+</style>
+<button class="layui-btn" id="here" style="margin:10rem;">
+  here
+</button>
+
+//HTML示例
+<div id="layer-photos-demo" class="layer-photos-demo">
+  <img layer-pid="图片id，可以不写" width="200rem" height="200rem" layer-src="/static/img/1.jpg" src="/static/img/1.jpg" alt="图片名">
+  <img layer-pid="图片id，可以不写" width="200rem" height="200rem" layer-src="/static/img/1.jpg" src="/static/img/1.jpg" alt="图片名">
+</div>
+
+
+<script>
+
+
+layui.use('layer', function(){
+  var $=layui.$;
+  var layer = layui.layer;
+  
+
+
+  
+  // layer.ready(function(){
+  //   layer.msg('很高兴一开场就见到你');
+  // }); 
+   
+  
+  //open
+  //haha();
+
+  //alert
+  //wuwu();
+
+  //confirm
+  //liuliu();
+
+  //load
+  //qiqi();
+
+  //tips
+  //baba($);
+
+  //prompt
+  //lala();
+
+  //table
+  //tab();
+
+  //xiangce
+  //xiangce001($);
+
+  xiangce001($);
+        
+
+});  
+function haha(){
+     
+    // layer.msg('不开心。。', {
+    //   icon: 5
+    //   ,shade: [0.8, '#393D49']
+    //   ,time: 1000
+
+    // });
+
+    layer.tips("1231231", '#surname', {
+        tips: [1, '#3595CC'],
+        time: 0
+      });
+
+    //eg2
+    layer.open({
+      // type:4
+      id:1
+      ,icon: 5
+      ,content: 'test'
+      ,closeBtn: 1
+      ,shade: [0.8, '#393D49']
+      ,shadeClose:1
+      // ,time: 1000
+      ,anim: 6
+      , isOutAnim: true
+      ,maxmin: true
+      ,moveOut: false
+      ,tips: [1, '#000']
+      ,btn: ['按钮一', '按钮二', '按钮三']
+      ,yes: function(index, layero){
+        //console.log(1);
+        //layer.close(index);
+        //按钮【按钮一】的回调
+      }
+      ,btn2: function(index, layero){
+        //按钮【按钮二】的回调
+        
+        //return false 开启该代码可禁止点击该按钮关闭
+      }
+      ,btn3: function(index, layero){
+        //按钮【按钮三】的回调
+        
+        //return false 开启该代码可禁止点击该按钮关闭
+      }
+      ,cancel: function(){ 
+        //右上角关闭回调
+        if(confirm('确定要关闭么')){ //只有当点击confirm框的确定时，该层才会关闭
+          layer.close('');
+          return true; 
+        }
+        return false; 
+        //return false 开启该代码可禁止点击该按钮关闭
+      }
+      //拉伸窗口大小触发
+      ,resizing: function(layero){
+        //layer.msg('haha');
+        //console.log(layero);
+      }
+      ,success: function(layero, index){
+        console.log(layero, index);
+      }   
+
+    });
+}
+
+function wuwu(){
+
+
+      /*layer.alert('有了回调', function(index){
+        //do something
+        
+        layer.close(index);
+      });   */
+
+
+      //alert(123);
+      
+      var index=layer.alert('有了回调', {
+        icon: 1
+        ,id:1
+        ,content: 'test'
+        ,closeBtn: 1
+        ,shade: [0.8, '#393D49']
+        ,shadeClose:1
+        , yes: function(index, layero){
+            //do something
+
+            layer.close(index); //如果设定了yes回调，需进行手工关闭
+          } 
+
+      });
+      
+
+     
+}
+
+function liuliu(){
+
+  //layer.alert(1);
+  //eg1
+  layer.confirm('is not?', {
+        icon: 1
+        ,id:1
+        ,content: 'test'
+        ,closeBtn: 1
+        ,shade: [0.8, '#393D49']
+        ,shadeClose:1
+        , yes: function(index, layero){
+            //do something
+            alert(23111);
+            layer.close(index); //如果设定了yes回调，需进行手工关闭
+        }
+      }
+        , function(index){
+          //do something
+          alert(231);
+          layer.close(index);
+        });
+
+
+  //eg2
+ /* layer.confirm('is not?', function(index){
+    //do something
+    alert(123);
+    layer.close(index);
+  });  */     
+      
+
+
+
+}
+
+
+function qiqi(){
+
+      //eg1
+    //var index = layer.load();
+    //eg2
+    //var index = layer.load(1); //换了种风格
+    //eg3
+    var index = layer.load(); //又换了种风格，并且设定最长等待10秒 
+    //关闭
+    layer.close(index); 
+}
+
+
+function baba($){
+
+      //eg1
+      //layer.tips('只想提示地精准些', '#here');
+
+      //eg 2
+      $('#here').on('click', function(){
+        var that = this;
+        layer.tips('只想提示地精准些', that); //在元素的事件回调体中，follow直接赋予this即可
+
+        
+
+      });
+
+      //eg 3
+      // layer.tips('在上面', '#here', {
+      //   tips: 4
+        
+      // });
+}
+
+
+function lala(){
+  //prompt层新定制的成员如下
+
+ 
+//例子1
+// layer.prompt(function(value, index, elem){
+//   alert(value); //得到value
+//   layer.close(index);
+// });
+ 
+//例子2
+/*var index=layer.prompt({
+  formType: 0,
+  value: '初始值',
+  title: '请输入值',
+  area: ['800px', '350px'] //自定义文本域宽高
+}, function(value, index, elem){
+  alert(value); //得到value
+  layer.close(index);
+});*/
+
+
+}
+
+function tab(){
+  layer.tab({
+    area: ['600px', '300px'],
+    tab: [{
+      title: 'TAB1', 
+      content: '内容1'
+    }, {
+      title: 'TAB2', 
+      content: '内容2'
+    }, {
+      title: 'TAB3', 
+      content: '内容3'
+    }]
+  });        
+}
+
+function xiangce(){
+
+  /*$.getJSON('/jquery/layer/test/photos.json', function(json){
+      layer.photos({
+        photos: json
+        ,anim: 5 //0-6的选择，指定弹出图片动画类型，默认随机（请注意，3.0之前的版本用shift参数）
+      });
+    }); 
+
+  {
+    "title": "", //相册标题
+    "id": 123, //相册id
+    "start": 0, //初始显示的图片序号，默认0
+    "data": [   //相册包含的图片，数组格式
+      {
+        "alt": "图片名",
+        "pid": 666, //图片id
+        "src": "", //原图地址
+        "thumb": "" //缩略图地址
+      }
+    ]
+  }  */
+}
+
+function xiangce001($){
+   
+   //调用示例
+  layer.photos({
+    photos: '#layer-photos-demo'
+    ,width:'4rem'
+    ,height:'4rem'
+    ,anim: 5 //0-6的选择，指定弹出图片动画类型，默认随机（请注意，3.0之前的版本用shift参数） 
+    
+  }); 
+}
+
+function xiangce002($){
+    //alert(1);
+
+    /*layer.photos({
+      photos: "/static/img/1.jpg",
+      tab: function(pic, layero){
+        console.log(pic) //当前图片的一些信息
+      }
+    });*/
+}
+
+</script>
+
+</body>
+
+
+</html>
